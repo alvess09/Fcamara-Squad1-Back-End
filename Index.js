@@ -26,12 +26,13 @@ app.post('/',(req, res) =>{
 });
 
 // ATUALIZAR SOMENTE REGISTRO COM ID
-app.put('./:id', (req, res) => {
+app.put('/:id', (req, res) => {
+    const id = req.params.id;
     res.json({mensagem: `ATUALIZAR SOMENTE O REGISTRO COM ID: ${id}`});
 });
 
 // DELETAR SOMENTE REGISTRO COM ID
-app.delete('./:id', (req, res) => {
+app.delete('/:id', (req, res) => {
     const id = req.params.id;
     res.json({ mensagem: `DELETAR SOMENTE O REGISTRO COM O ID: ${id}`});
 });
