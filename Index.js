@@ -7,14 +7,18 @@ app.use(morgan('dev'));
 
 //Rotas de acesso
 
+// PEGAR TODAS AS ROTAS
 app.get('/', (req, res) =>{
     //regra de negocio entra aqui
     res.json({ mensagem:'PEGAR TODOS OS REGISTROS'});
 });
+
 // PEGAR SOMENTE REGISTRO COM ID
 app.get('/:id',(req, res) =>{
+    const id = req.params.id;
     res.json({ mensagem:`PEGAR SOMENTE OS REGISTROS COM ID:${id} `});
 });
+
 // CRIAR UM REGISTRO 
 app.post('/',(req, res) =>{
     const body = req.body
