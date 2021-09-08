@@ -1,36 +1,14 @@
-const dados = require('./db.js')
-/* capturar dados do formulario e inserir no JSON => A fazer */
+/* Criando um Servidor c/ express*/
+const express = require('express');
+const app = express();
 
-/* recuperar os dados inseridos*/
-const consultor = {
-    nome: dados.dbFunc.nome,
-    email: dados.dbFunc.email,
-    cidade: dados.dbFunc.cidade
-}
+//Rotas de acesso
+app.get('/', (req, res) =>{
+    //regra de negocio entra aqui
+    res.json({ mensagem:'Rota Funcionando'});
+});
 
-const mesa = {
-    numero: dados.dbDesk.numero,
-    ocupacao: dados.dbDesk.ocupacao,
-    reserva: dados.dbDesk.reserva
-}
-console.log(consultor)
-console.log(mesa)
-
-/*Separar por unidade*/
-const qgSaoPaulo = (desks) => {
-    let desks = []
-    for (let i = 0; i < 601; i++) {
-        desks.push(mesa(numero, ocupacao, reserva))
-    }
-    return (desks)
-}
-
-
-const qgSantos = (desks2) => {
-    let desks2 = []
-    for (let i = 0; i < 100; i++) {
-        desks.push(mesa(numero, ocupacao, reserva))
-    }
-    return (desks2)
-}
-console.log(qgSaoPaulo.desks2)
+// Inicialização do Servidor
+app.listen(3000, () =>{
+    console.log("Meu Servidor está funcionando!")
+})
