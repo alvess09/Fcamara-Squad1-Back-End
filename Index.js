@@ -1,46 +1,28 @@
 /* Criando um Servidor c/ express*/
 const express = require('express');
 const morgan = require("morgan");
+const bodyParser = require('body-parser');
+const mongoose = require('mongoose');
+
 const app = express();
+const routes = require('./src/routes/gobackqg.routes');
 
+//conexão com o banco de dados OBS INSERIR LINK DB ATLAS
+mongoose.connect('mongodb://localhost:27017/nomedabase',{
+    useNewUrlParser : true,
+    useUnifieldTopology: true,
+});
+
+app.use(bodyParser.json());
 app.use(morgan('dev'));
-
-//Rotas de acesso
-
-// PEGAR TODAS AS ROTAS
-app.get('/', (req, res) =>{
-    //regra de negocio entra aqui
-    res.json({ mensagem:'PEGAR TODOS OS REGISTROS'});
-});
-
-// PEGAR SOMENTE REGISTRO COM ID
-app.get('/:id',(req, res) =>{
-    const id = req.params.id;
-    res.json({ mensagem:`PEGAR SOMENTE OS REGISTROS COM ID:${id} `});
-});
-
-// CRIAR UM REGISTRO 
-app.post('/',(req, res) =>{
-    const body = req.body
-    res.json(body);
-});
-
-// ATUALIZAR SOMENTE REGISTRO COM ID
-app.put('/:id', (req, res) => {
-    const id = req.params.id;
-    res.json({mensagem: `ATUALIZAR SOMENTE O REGISTRO COM ID: ${id}`});
-});
-
-// DELETAR SOMENTE REGISTRO COM ID
-app.delete('/:id', (req, res) => {
-    const id = req.params.id;
-    res.json({ mensagem: `DELETAR SOMENTE O REGISTRO COM O ID: ${id}`});
-});
+app.use('/', routes);
 
 
 
 
-// Inicialização do Servidor
+
+
+// Inicialização do meu  Servidor na porta 3000.
 app.listen(3000, () =>{
     console.log("Meu Servidor está funcionando!")
 });

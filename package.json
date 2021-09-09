@@ -18,7 +18,9 @@
   },
   "homepage": "https://github.com/alvess09/Fcamara-Squad1-Back-End#readme",
   "dependencies": {
+    "body-parser": "^1.19.0",
     "express": "^4.17.1",
+    "mongoose": "^6.0.5",
     "morgan": "^1.10.0"
   }
 }
