@@ -14,17 +14,47 @@ const dbFunc = insereUsuarios [] = []
 const insereUsuarios= ()=>{
     dbFunc.push({
         nome: data.nome,
-        email: data.email,
-        cidade: data.cidade
+        email: data.email
     });
 }
 
-const disponiveis = []
+const mesasDisponiveis = []
     for (let i = 0; i < 600; i++) {
         if (i % 4 == 0){
-            disponiveis.push(i)
+            mesasDisponiveis.push(i)
         }
     }
-    console.log
+    
 const dbDesk = string.reduce( x => x % 4 == 0)
-console.log(selector3)
+
+/* CRIAÇÃO DE COLEÇÕES / TABELAS DO BANCO DE DADOS */
+const dadosColecao = { 
+    escritorios : {
+      "escritorio1" : "São Paulo" , 
+      "escritorio2" : "Santos"
+    },
+    consultor : {
+        "id" : 1,
+        "nome" : "",
+        "email" : ""
+    },
+    mesas : {
+        "idmesa" : 1,
+        "escritório" : this.escritorios{
+            if (escritorios == this.escritorio1) {
+                return this.escritorio1 ;
+            }
+            return this.escritorio2;
+        }
+    },
+    agendamento : {
+        "data" : "16/09/2021",
+        "escritório" : this.escritorios{
+            if (escritorios == this.escritorio1) {
+                return this.escritorio1 ;
+            }
+            return this.escritorio2;
+        }
+    }
+    
+}
