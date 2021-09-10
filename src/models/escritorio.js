@@ -1,3 +1,4 @@
+// model escritório 
 const mongoose = require('mongoose');
 
 const Escritorio = mongoose.model(

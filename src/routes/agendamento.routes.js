@@ -1,5 +1,7 @@
+const { response } = require('express');
 const express  = require('express');
 const router = express.Router();
+const Agendamento = require('../models/agendamento');
  
 //Rotas de acesso
 
@@ -16,9 +18,16 @@ router.get('/:id',(req, res) =>{
 });
 
 // CRIAR UM REGISTRO 
-router.post('/',(req, res) =>{
-    const body = req.body
-    res.json(body);
+router.post('/', async (req, res) =>{
+    try{
+        const agendamento = req.body;
+    const response = await new Agendamento(agendamento).save();
+    res.json({error : false, agendamento : response});
+
+    } catch (err) {
+        res.json({error : true, message : err.message});
+    }
+    
 });
 
 // ATUALIZAR SOMENTE REGISTRO COM ID

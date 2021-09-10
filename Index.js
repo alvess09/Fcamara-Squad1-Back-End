@@ -5,7 +5,7 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 
 const app = express();
-const routes = require('./src/routes/gobackqg.routes');
+const routes = require('./src/routes/agendamento.routes');
 
 //conexão com o banco de dados OBS INSERIR LINK DB ATLAS
 // mongoose.connect('mongodb://localhost:27017/db',{
