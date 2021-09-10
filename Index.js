@@ -8,10 +8,10 @@ const app = express();
 const routes = require('./src/routes/gobackqg.routes');
 
 //conexão com o banco de dados OBS INSERIR LINK DB ATLAS
-mongoose.connect('mongodb://localhost:27017/nomedabase',{
-    useNewUrlParser : true,
-    useUnifieldTopology: true,
-});
+// mongoose.connect('mongodb://localhost:27017/db',{
+//     useNewUrlParser : true,
+//     useUnifieldTopology: true,
+// });
 
 app.use(bodyParser.json());
 app.use(morgan('dev'));
