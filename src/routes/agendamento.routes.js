@@ -8,7 +8,12 @@ const Agendamento = require('../models/agendamento');
 // PEGAR TODAS AS ROTAS
 router.get('/', (req, res) =>{
     //regra de negocio entra aqui
-    res.json({ mensagem:'PEGAR TODOS OS REGISTROS'});
+    try {
+        const agendamento = await Agendamento.find({});
+        res.json({ error: false, agendamento });
+    } catch (err) {
+        res.json({ error: true, message: err.message });
+    }
 });
 
 // PEGAR SOMENTE REGISTRO COM ID
