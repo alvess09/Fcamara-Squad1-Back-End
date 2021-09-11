@@ -3,7 +3,8 @@ const mongoose = require('mongoose');
 
 const Escritorio = mongoose.model(
     'Escritorio', {
-    cidade: String
+    cidade: String,
+    required : true
 });
 
 module.exports = Escritorio;
