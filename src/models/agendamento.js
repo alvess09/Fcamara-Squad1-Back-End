@@ -7,7 +7,6 @@ const Agendamento = mongoose.model(
     data: Number,
     escritorio: String,
     consultor : String,
-    required : true
 });
 
 module.exports = Agendamento;

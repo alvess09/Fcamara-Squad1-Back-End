@@ -8,10 +8,15 @@ const app = express();
 const routes = require('./src/routes/agendamento.routes');
 
 //conexão com o banco de dados OBS INSERIR LINK DB ATLAS
-// mongoose.connect('mongodb://localhost:27017/db',{
-//     useNewUrlParser : true,
-//     useUnifieldTopology: true,
-// });
+
+mongoose.connect("mongodb+srv://dev:fcamarasquad1@cluster0.k1pgm.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",{
+    useNewUrlParser : true
+    
+}).then(() => {
+    console.log("MongoDB Conectado...")
+}).catch((err) => {
+    console.log("Houve um erro ao se conectar ao mongoDB:" + err)
+});
 
 app.use(bodyParser.json());
 app.use(morgan('dev'));
