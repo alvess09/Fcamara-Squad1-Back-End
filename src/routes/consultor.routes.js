@@ -18,7 +18,7 @@ router.get('/:id',(req, res) =>{
 });
 
 // CRIAR UM REGISTRO 
-router.post('/', async (req, res) =>{
+router.post('consultor', async (req, res) =>{
     try{
         const consultor = req.body;
     const response = await new Consultor(consultor).save();

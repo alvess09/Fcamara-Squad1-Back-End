@@ -3,10 +3,10 @@ const mongoose = require('mongoose');
 
 const Consultor = mongoose.model(
     'Consultor', {
-    nome: String,
-    required: true,
-    email: String,
-    required: true
+    nome: {type : String,
+    required: true,},
+    email: {type: String,
+    required: true}
     //talvez entre um campo senha : number
 });
 
