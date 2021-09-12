@@ -1,3 +1,5 @@
+const dotenv = require('dotenv');
+dotenv.config();
 /* Criando um Servidor c/ express*/
 const express = require('express');
 const morgan = require("morgan");
@@ -9,7 +11,7 @@ const consultorroutes = require('./src/routes/consultor.routes');
 
 
 //conexão com o banco de dados OBS INSERIR LINK DB ATLAS
-mongoose.connect("mongodb+srv://dev:fcamarasquad1@cluster0.k1pgm.mongodb.net/myFirstDatabase?retryWrites=true&w=majority", {
+mongoose.connect(`${process.env.DB_URL}?retryWrites=true&w=majority`, {
     useNewUrlParser: true
 }).then(() => {
     console.log("MongoDB Conectado...")
