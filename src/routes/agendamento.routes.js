@@ -6,7 +6,7 @@ const Agendamento = require('../models/agendamento');
 //Rotas de acesso
 
 // PEGAR TODAS AS ROTAS
-router.get('/', (req, res) =>{
+router.get('/', async (req, res) =>{
     //regra de negocio entra aqui
     try {
         const agendamento = await Agendamento.find({});
