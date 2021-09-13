@@ -22,7 +22,7 @@ router.get('/:id', async(req, res) =>{
         const id = req.params.id;
         const agendamento = await Agendamento.findById(id);
         res.json({ error: false, agendamento })
-    } catch {
+    } catch (err) {
         res.json({ error: true, message: err.message });
     }
 
@@ -42,9 +42,18 @@ router.post('/', async (req, res) =>{
 });
 
 // ATUALIZAR SOMENTE REGISTRO COM ID
-router.put('/:id', (req, res) => {
-    const id = req.params.id;
-    res.json({mensagem: `ATUALIZAR SOMENTE O REGISTRO COM ID: ${id}`});
+router.put('/:id', async (req, res) => {
+    try {
+        const id = req.params.id;
+        const novo_agendamento = req.body;
+
+        const agendamento = await Agendamento.findByIdAndUpdate(id, novo_agendamento);
+        res.json = ({ error: false, agendamento})
+
+    } catch (err) {
+        res.json({ error: true, message: err.message });
+    }
+    
 });
 
 // DELETAR SOMENTE REGISTRO COM ID
