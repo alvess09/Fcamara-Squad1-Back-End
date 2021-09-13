@@ -49,7 +49,7 @@ router.put('/:id', async (req, res) => {
 
         const consultor = await Consultor.findByIDAndUpdate(id, novo_consultor);
         res.json = ({ error: false, consultor});
-        
+
     } catch (err) {
         res.json({ error: true, message: err.message });
     }
@@ -57,9 +57,15 @@ router.put('/:id', async (req, res) => {
 });
 
 // DELETAR SOMENTE REGISTRO COM ID
-router.delete('/:id', (req, res) => {
-    const id = req.params.id;
-    res.json({ mensagem: `DELETAR SOMENTE O REGISTRO COM O ID: ${id}`});
+router.delete('/:id', async (req, res) => {
+    try {
+        const id = req.params.id;
+        await Consultor.findByIDAndDelete(id);
+        res.json({ error: false });
+    } catch (err) {
+        res.json({ error: true, message: err.message });
+    }
+
 });
 
 
