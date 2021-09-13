@@ -3,11 +3,10 @@ const mongoose = require('mongoose');
 
 const Mesa = mongoose.model(
     'Mesa', {
-    escritorio: String,
-    required : true,
-    numero: Number,
-    required: true
-
+    escritorio: {
+        type: String,
+        required: true
+    }
 });
 
 module.exports = Mesa;

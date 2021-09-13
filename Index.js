@@ -1,15 +1,17 @@
+const dotenv = require('dotenv');
+dotenv.config();
 /* Criando um Servidor c/ express*/
 const express = require('express');
 const morgan = require("morgan");
-const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const app = express();
 const routes = require('./src/routes/agendamento.routes');
+const consultorroutes = require('./src/routes/consultor.routes');
 
 
 //conexão com o banco de dados OBS INSERIR LINK DB ATLAS
-mongoose.connect("mongodb+srv://dev:fcamarasquad1@cluster0.k1pgm.mongodb.net/myFirstDatabase?retryWrites=true&w=majority", {
+mongoose.connect(`${process.env.DB_URL}?retryWrites=true&w=majority`, {
     useNewUrlParser: true
 }).then(() => {
     console.log("MongoDB Conectado...")
@@ -17,9 +19,10 @@ mongoose.connect("mongodb+srv://dev:fcamarasquad1@cluster0.k1pgm.mongodb.net/myF
     console.log("Houve um erro ao se conectar ao mongoDB:" + err)
 });
 app.use(cors());
-app.use(bodyParser.json());
+app.use(express.json());
 app.use(morgan('dev'));
 app.use('/', routes);
+app.use('/consultor', consultorroutes);
 
 
 
@@ -31,3 +34,4 @@ app.use('/', routes);
 app.listen(3000, () => {
     console.log("Meu Servidor está funcionando!")
 });
+//teste alteração index
