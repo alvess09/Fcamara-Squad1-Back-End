@@ -21,7 +21,7 @@ router.get('/:id', async (req, res) =>{
     try {
         const id = req.params.id;
         const consultor = await Consultor.findByID(id);
-        res.json({ error: false, consultor })
+        res.json({ error: false, consultor });
     } catch (err) {
         res.json({ error: true, message: err.message });
     }
@@ -42,9 +42,18 @@ router.post('consultor', async (req, res) =>{
 });
 
 // ATUALIZAR SOMENTE REGISTRO COM ID
-router.put('/:id', (req, res) => {
-    const id = req.params.id;
-    res.json({mensagem: `ATUALIZAR SOMENTE O REGISTRO COM ID: ${id}`});
+router.put('/:id', async (req, res) => {
+    try {
+        const id = req.params.id;
+        const novo_consultor = req.body;
+
+        const consultor = await Consultor.findByIDAndUpdate(id, novo_consultor);
+        res.json = ({ error: false, consultor});
+        
+    } catch (err) {
+        res.json({ error: true, message: err.message });
+    }
+    
 });
 
 // DELETAR SOMENTE REGISTRO COM ID
