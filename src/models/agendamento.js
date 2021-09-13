@@ -4,10 +4,9 @@ const mongoose = require('mongoose');
 
 const Agendamento = mongoose.model(
     'Agendamento', {
-    data: Number,
+    data: String,
     escritorio: String,
     consultor : String,
-    required : true
 });
 
 module.exports = Agendamento;
