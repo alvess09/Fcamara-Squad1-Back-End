@@ -17,9 +17,15 @@ router.get('/', async (req, res) =>{
 });
 
 // PEGAR SOMENTE REGISTRO COM ID
-router.get('/:id',(req, res) =>{
-    const id = req.params.id;
-    res.json({ mensagem:`PEGAR SOMENTE OS REGISTROS COM ID:${id} `});
+router.get('/:id', async (req, res) =>{
+    try {
+        const id = req.params.id;
+        const consultor = await Consultor.findByID(id);
+        res.json({ error: false, consultor })
+    } catch (err) {
+        res.json({ error: true, message: err.message });
+    }
+
 });
 
 // CRIAR UM REGISTRO 
