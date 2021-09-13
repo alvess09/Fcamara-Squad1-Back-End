@@ -6,9 +6,14 @@ const Consultor = require('../models/consultor');
 //Rotas de acesso
 
 // PEGAR TODAS AS ROTAS
-router.get('/', (req, res) =>{
+router.get('/', async (req, res) =>{
     //regra de negocio entra aqui
-    res.json({ mensagem:'PEGAR TODOS OS REGISTROS'});
+    try {
+        const consultor = await Consultor.find({});
+        res.json({ error: false, consultor });
+    } catch (err) {
+        res.json({ error: true, message: err.mensagem });
+    }
 });
 
 // PEGAR SOMENTE REGISTRO COM ID
