@@ -6,7 +6,7 @@ const Escritorio = require('../models/escritorio');
 //Rotas de acesso
 
 // PEGAR TODAS AS ROTAS
-router.get('/', (req, res) =>{
+router.get('/', async (req, res) =>{
     //regra de negocio entra aqui
     try {
         const escritorio = await Escritorio.find({});
@@ -17,9 +17,14 @@ router.get('/', (req, res) =>{
 });
 
 // PEGAR SOMENTE REGISTRO COM ID
-router.get('/:id',(req, res) =>{
-    const id = req.params.id;
-    res.json({ mensagem:`PEGAR SOMENTE OS REGISTROS COM ID:${id} `});
+router.get('/:id', async (req, res) =>{
+    try {
+        const id = req.params.id;
+        const escritorio = await Escritorio.findById(id);
+        res.json({ error: false, escritorio })
+    } catch (err) {
+        res.json({ error: true, message: err.message });
+    }
 });
 
 // CRIAR UM REGISTRO 
