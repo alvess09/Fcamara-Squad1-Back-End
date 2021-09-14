@@ -48,7 +48,7 @@ router.put('/:id', async (req, res) => {
         const novo_agendamento = req.body;
 
         const agendamento = await Agendamento.findByIdAndUpdate(id, novo_agendamento);
-        res.json = ({ error: false, agendamento})
+        res.json({ error: false, agendamento});
 
     } catch (err) {
         res.json({ error: true, message: err.message });
@@ -63,7 +63,7 @@ router.delete('/:id', async (req, res) => {
         await Agendamento.findByIdAndDelete(id);
         res.json({ error: false });
     } catch (err) {
-        res.json({ error: true, message: err. message });
+        res.json({ error: true, message: err.message });
     }
 
 });

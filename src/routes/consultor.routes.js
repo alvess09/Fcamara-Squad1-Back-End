@@ -48,7 +48,7 @@ router.put('/:id', async (req, res) => {
         const novo_consultor = req.body;
 
         const consultor = await Consultor.findByIDAndUpdate(id, novo_consultor);
-        res.json = ({ error: false, consultor});
+        res.json({ error: false, consultor});
 
     } catch (err) {
         res.json({ error: true, message: err.message });
