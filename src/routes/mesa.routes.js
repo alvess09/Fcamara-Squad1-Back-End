@@ -41,9 +41,17 @@ router.post('/', async (req, res) =>{
 });
 
 // ATUALIZAR SOMENTE REGISTRO COM ID
-router.put('/:id', (req, res) => {
-    const id = req.params.id;
-    res.json({mensagem: `ATUALIZAR SOMENTE O REGISTRO COM ID: ${id}`});
+router.put('/:id', async (req, res) => {
+    try {
+        const id = req.params.id;
+        const nova_mesa = req.body;
+
+        const mesa = await Mesa.findByIdAndUpdate(id, nova_mesa);
+        res.json({ error: false, mesa });
+
+    } catch (err) {
+        res.json({ error: true, message: err.message });
+    }
 });
 
 // DELETAR SOMENTE REGISTRO COM ID
