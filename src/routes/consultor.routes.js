@@ -6,15 +6,26 @@ const Consultor = require('../models/consultor');
 //Rotas de acesso
 
 // PEGAR TODAS AS ROTAS
-router.get('/', (req, res) =>{
+router.get('/', async (req, res) =>{
     //regra de negocio entra aqui
-    res.json({ mensagem:'PEGAR TODOS OS REGISTROS'});
+    try {
+        const consultor = await Consultor.find({});
+        res.json({ error: false, consultor });
+    } catch (err) {
+        res.json({ error: true, message: err.mensagem });
+    }
 });
 
 // PEGAR SOMENTE REGISTRO COM ID
-router.get('/:id',(req, res) =>{
-    const id = req.params.id;
-    res.json({ mensagem:`PEGAR SOMENTE OS REGISTROS COM ID:${id} `});
+router.get('/:id', async (req, res) =>{
+    try {
+        const id = req.params.id;
+        const consultor = await Consultor.findByID(id);
+        res.json({ error: false, consultor });
+    } catch (err) {
+        res.json({ error: true, message: err.message });
+    }
+
 });
 
 // CRIAR UM REGISTRO 
@@ -31,15 +42,30 @@ router.post('consultor', async (req, res) =>{
 });
 
 // ATUALIZAR SOMENTE REGISTRO COM ID
-router.put('/:id', (req, res) => {
-    const id = req.params.id;
-    res.json({mensagem: `ATUALIZAR SOMENTE O REGISTRO COM ID: ${id}`});
+router.put('/:id', async (req, res) => {
+    try {
+        const id = req.params.id;
+        const novo_consultor = req.body;
+
+        const consultor = await Consultor.findByIDAndUpdate(id, novo_consultor);
+        res.json({ error: false, consultor});
+
+    } catch (err) {
+        res.json({ error: true, message: err.message });
+    }
+    
 });
 
 // DELETAR SOMENTE REGISTRO COM ID
-router.delete('/:id', (req, res) => {
-    const id = req.params.id;
-    res.json({ mensagem: `DELETAR SOMENTE O REGISTRO COM O ID: ${id}`});
+router.delete('/:id', async (req, res) => {
+    try {
+        const id = req.params.id;
+        await Consultor.findByIDAndDelete(id);
+        res.json({ error: false });
+    } catch (err) {
+        res.json({ error: true, message: err.message });
+    }
+
 });
 
 

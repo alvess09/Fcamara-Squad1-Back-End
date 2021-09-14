@@ -17,9 +17,15 @@ router.get('/', async (req, res) =>{
 });
 
 // PEGAR SOMENTE REGISTRO COM ID
-router.get('/:id',(req, res) =>{
-    const id = req.params.id;
-    res.json({ mensagem:`PEGAR SOMENTE OS REGISTROS COM ID:${id} `});
+router.get('/:id', async(req, res) =>{
+    try {
+        const id = req.params.id;
+        const agendamento = await Agendamento.findById(id);
+        res.json({ error: false, agendamento })
+    } catch (err) {
+        res.json({ error: true, message: err.message });
+    }
+
 });
 
 // CRIAR UM REGISTRO 
@@ -36,15 +42,30 @@ router.post('/', async (req, res) =>{
 });
 
 // ATUALIZAR SOMENTE REGISTRO COM ID
-router.put('/:id', (req, res) => {
-    const id = req.params.id;
-    res.json({mensagem: `ATUALIZAR SOMENTE O REGISTRO COM ID: ${id}`});
+router.put('/:id', async (req, res) => {
+    try {
+        const id = req.params.id;
+        const novo_agendamento = req.body;
+
+        const agendamento = await Agendamento.findByIdAndUpdate(id, novo_agendamento);
+        res.json({ error: false, agendamento});
+
+    } catch (err) {
+        res.json({ error: true, message: err.message });
+    }
+    
 });
 
 // DELETAR SOMENTE REGISTRO COM ID
-router.delete('/:id', (req, res) => {
-    const id = req.params.id;
-    res.json({ mensagem: `DELETAR SOMENTE O REGISTRO COM O ID: ${id}`});
+router.delete('/:id', async (req, res) => {
+    try {
+        const id = req.params.id;
+        await Agendamento.findByIdAndDelete(id);
+        res.json({ error: false });
+    } catch (err) {
+        res.json({ error: true, message: err.message });
+    }
+
 });
 
 
