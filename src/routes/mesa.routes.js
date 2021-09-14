@@ -55,9 +55,14 @@ router.put('/:id', async (req, res) => {
 });
 
 // DELETAR SOMENTE REGISTRO COM ID
-router.delete('/:id', (req, res) => {
-    const id = req.params.id;
-    res.json({ mensagem: `DELETAR SOMENTE O REGISTRO COM O ID: ${id}`});
+router.delete('/:id', async (req, res) => {
+    try {
+        const id = req.params.id;
+        await Mesa.findByIdAndDelete(id);
+        res.json({ error: false });
+    } catch (err) {
+        res.json({ error: true, message: err.message });
+    }
 });
 
 
