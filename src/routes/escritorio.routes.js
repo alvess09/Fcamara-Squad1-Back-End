@@ -8,7 +8,12 @@ const Escritorio = require('../models/escritorio');
 // PEGAR TODAS AS ROTAS
 router.get('/', (req, res) =>{
     //regra de negocio entra aqui
-    res.json({ mensagem:'PEGAR TODOS OS REGISTROS'});
+    try {
+        const escritorio = await Escritorio.find({});
+        res.json({ error: false, escritorio });
+    } catch (err) {
+        res.json({ error: true, message: err.message });
+    }
 });
 
 // PEGAR SOMENTE REGISTRO COM ID
