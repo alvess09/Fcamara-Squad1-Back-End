@@ -8,6 +8,8 @@ const cors = require('cors');
 const app = express();
 const routes = require('./src/routes/agendamento.routes');
 const consultorroutes = require('./src/routes/consultor.routes');
+const escritorioroutes = require('./src/routes/escritorio.routes');
+const mesaroutes = require('./src/routes/mesa.routes');
 
 
 //conexão com o banco de dados OBS INSERIR LINK DB ATLAS
@@ -21,8 +23,12 @@ mongoose.connect(`${process.env.DB_URL}?retryWrites=true&w=majority`, {
 app.use(cors());
 app.use(express.json());
 app.use(morgan('dev'));
+// DIRECIONAMENTO DAS ROTAS 
 app.use('/', routes);
 app.use('/consultor', consultorroutes);
+app.use('/escritorio', escritorioroutes);
+app.use('/mesa', mesaroutes);
+
 
 
 
