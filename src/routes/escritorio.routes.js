@@ -41,9 +41,17 @@ router.post('/', async (req, res) =>{
 });
 
 // ATUALIZAR SOMENTE REGISTRO COM ID
-router.put('/:id', (req, res) => {
-    const id = req.params.id;
-    res.json({mensagem: `ATUALIZAR SOMENTE O REGISTRO COM ID: ${id}`});
+router.put('/:id', async (req, res) => {
+    try {
+        const id = req.params.id;
+        const novo_escritorio = req.body;
+
+        const escritorio = await Escritorio.findByIdAndUpdate(id, novo_escritorio);
+        res.json({ error: false, escritorio});
+
+    } catch (err) {
+        res.json({ error: true, message: err.message });
+    }
 });
 
 // DELETAR SOMENTE REGISTRO COM ID
