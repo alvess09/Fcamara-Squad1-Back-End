@@ -21,7 +21,7 @@ router.get('/:id', async(req, res) =>{
     try {
         const id = req.params.id;
         const agendamento = await Agendamento.findById(id);
-        res.json({ error: false, agendamento })
+        res.json({ error: false, agendamento });
     } catch (err) {
         res.json({ error: true, message: err.message });
     }
