@@ -1,5 +1,5 @@
 # GOBACKHQ - BACK-END 
-   ![ Alt text](https://github.com/alvess09/Fcamara-Squad1-Back-End/blob/main/data300.gif) Projeto desenvolvido durante o Hackaton do Programa de Formação do grupo Fcamara. O desafio foi criar uma aplicação que permitisse que os consultores (#SANGUELARANJA) conseguissem voltar ao escritório com segurança visto que estamos em meio a pandemia do COVID-19, de forma que os mesmos pudessem agendar o dia em que poderiam ir ao escritório seguindo os protocolos sanitários de saúde.
+   Projeto desenvolvido durante o Hackaton do Programa de Formação do grupo Fcamara. O desafio foi criar uma aplicação que permitisse que os consultores (#SANGUELARANJA) conseguissem voltar ao escritório com segurança visto que estamos em meio a pandemia do COVID-19, de forma que os mesmos pudessem agendar o dia em que poderiam ir ao escritório seguindo os protocolos sanitários de saúde.
 
 ## Instalação
 
