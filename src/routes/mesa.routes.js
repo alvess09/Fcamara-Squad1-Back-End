@@ -6,15 +6,25 @@ const Mesa = require('../models/mesa');
 //Rotas de acesso
 
 // PEGAR TODAS AS ROTAS
-router.get('/', (req, res) =>{
+router.get('/', async (req, res) =>{
     //regra de negocio entra aqui
-    res.json({ mensagem:'PEGAR TODOS OS REGISTROS'});
+    try {
+        const mesa = await Mesa.find({});
+        res.json({ error: false, mesa });
+    } catch (err) {
+        res.json({ error: true, message: err.message });
+    }
 });
 
 // PEGAR SOMENTE REGISTRO COM ID
-router.get('/:id',(req, res) =>{
-    const id = req.params.id;
-    res.json({ mensagem:`PEGAR SOMENTE OS REGISTROS COM ID:${id} `});
+router.get('/:id', async (req, res) =>{
+    try {
+        const id = req.params.id;
+        const mesa = await Mesa.findById(id);
+        res.json({ error: false, mesa });
+    } catch (err) {
+        res.json({ error: true, message: err.message });
+    }
 });
 
 // CRIAR UM REGISTRO 
@@ -31,15 +41,28 @@ router.post('/', async (req, res) =>{
 });
 
 // ATUALIZAR SOMENTE REGISTRO COM ID
-router.put('/:id', (req, res) => {
-    const id = req.params.id;
-    res.json({mensagem: `ATUALIZAR SOMENTE O REGISTRO COM ID: ${id}`});
+router.put('/:id', async (req, res) => {
+    try {
+        const id = req.params.id;
+        const nova_mesa = req.body;
+
+        const mesa = await Mesa.findByIdAndUpdate(id, nova_mesa);
+        res.json({ error: false, mesa });
+
+    } catch (err) {
+        res.json({ error: true, message: err.message });
+    }
 });
 
 // DELETAR SOMENTE REGISTRO COM ID
-router.delete('/:id', (req, res) => {
-    const id = req.params.id;
-    res.json({ mensagem: `DELETAR SOMENTE O REGISTRO COM O ID: ${id}`});
+router.delete('/:id', async (req, res) => {
+    try {
+        const id = req.params.id;
+        await Mesa.findByIdAndDelete(id);
+        res.json({ error: false });
+    } catch (err) {
+        res.json({ error: true, message: err.message });
+    }
 });
 
 
