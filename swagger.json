@@ -33,6 +33,7 @@
                                 "Agendamento": {
                                     "value": {
                                         "data": "14/09/2021",
+                                        "escritorio": "Santos",
                                         "nome": "Ariel",
                                         "email": "ariel@fcamara.com"
                                     }
@@ -109,6 +110,7 @@
                                 "Agendamento": {
                                     "value": {
                                         "data": "16/09/2021",
+                                        "escritorio": "São Paulo",
                                         "nome": "Leandra",
                                         "email": "leandra@fcamara.com"
                                     }
@@ -139,6 +141,9 @@
                 "type": "object",
                 "properties": {
                     "data": {
+                        "type": "string"
+                    },
+                    "escritorio": {
                         "type": "string"
                     },
                     "nome": {

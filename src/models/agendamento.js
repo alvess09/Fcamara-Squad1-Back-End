@@ -16,6 +16,9 @@ const Agendamento = mongoose.model(
         type: String,
         
     },
+    email: {
+        type: String,
+      }
 });
 
 module.exports = Agendamento;
