@@ -1,11 +1,13 @@
+/* Criando um Servidor c/ express*/
 const dotenv = require('dotenv');
 dotenv.config();
-/* Criando um Servidor c/ express*/
 const express = require('express');
 const morgan = require("morgan");
 const mongoose = require('mongoose');
 const cors = require('cors');
 const app = express();
+const swaggerUi = require('swagger-ui-express');
+const swaggerDocument = require('./swagger.json');
 const routes = require('./src/routes/agendamento.routes');
 const consultorroutes = require('./src/routes/consultor.routes');
 const escritorioroutes = require('./src/routes/escritorio.routes');
@@ -20,6 +22,7 @@ mongoose.connect(`${process.env.DB_URL}?retryWrites=true&w=majority`, {
 }).catch((err) => {
     console.log("Houve um erro ao se conectar ao mongoDB:" + err)
 });
+app.use('/api-docs' , swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 app.use(cors());
 app.use(express.json());
 app.use(morgan('dev'));

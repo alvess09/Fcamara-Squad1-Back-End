@@ -1,0 +1,154 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "API de agendamento de mesas",
+        "description": "API desenvolvida para auxilio na agenda de mesas na volta ao escritório durante a pandemia da COVID-19",
+        "termsOfService": "http://localhost:3000/terms",
+        "contact": {
+            "email": "squad1fcamara@gmail.com"
+        },
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "http://localhost:3000/",
+            "description": "API de teste"
+        }
+    ],
+    "paths": {
+        "/": {
+            "post": {
+                "sumary": "Agendamento de mesa",
+                "description": "Rota responsável por garantir agendamento de mesa de acordo  com o escritório e data selecionada",
+                "tags": [
+                    "Agendamento"
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Agendamento"
+                            },
+                            "examples": {
+                                "Agendamento": {
+                                    "value": {
+                                        "data": "14/09/2021",
+                                        "nome": "Ariel",
+                                        "email": "ariel@fcamara.com"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "$ref": "#/components/schemas/Agendamento"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/{id}": {
+            "get": {
+                "description": "Buscar agendamento pelo id",
+                "sumary": "Buscar agendamento pelo id",
+                "tags": [
+                    "Agendamento"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id do Agendamento",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "$ref": "#/components/schemas/Agendamento"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "put": {
+                "description": "Atualizar agendamento pelo id",
+                "sumary": "Atualizar agendamento pelo id",
+                "tags": [
+                    "Agendamento"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id do Agendamento",
+                        "required": true
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Agendamento"
+                            },
+                            "examples": {
+                                "Agendamento": {
+                                    "value": {
+                                        "data": "16/09/2021",
+                                        "nome": "Leandra",
+                                        "email": "leandra@fcamara.com"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "$ref": "#/components/schemas/Agendamento"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "Agendamento": {
+                "type": "object",
+                "properties": {
+                    "data": {
+                        "type": "string"
+                    },
+                    "nome": {
+                        "type": "string"
+                    },
+                    "email": {
+                        "type": "string"
+                    }
+                }
+            }
+        }
+    }
+}
