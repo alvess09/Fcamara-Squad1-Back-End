@@ -18,6 +18,7 @@ const Agendamento = mongoose.model(
     },
     email: {
         type: String,
+        required: true
       }
 });
 
